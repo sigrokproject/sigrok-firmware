@@ -25,7 +25,7 @@ DESTDIR ?= /usr/local/share/libsigrok/firmware
 TARBALLDIR = sigrok-firmwares-$(VERSION)
 
 all:
-	@echo "Run 'make dist' to create a tarball."
+	@echo "Valid Makefile targets: ChangeLog, dist, install."
 
 ChangeLog:
 	@git log > ChangeLog || touch ChangeLog
