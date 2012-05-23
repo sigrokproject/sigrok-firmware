@@ -30,8 +30,8 @@ ChangeLog:
 
 dist: ChangeLog
 	@tar -c -v -z --exclude=.git --exclude=Makefile \
-		--exclude=sigrok-firmware-$(VERSION).tar.gz \
-		-f sigrok-firmware-$(VERSION).tar.gz *
+		--exclude=sigrok-firmwares-$(VERSION).tar.gz \
+		-f sigrok-firmwares-$(VERSION).tar.gz *
 	@rm -f ChangeLog
 
 install:
