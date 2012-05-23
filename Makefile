@@ -20,6 +20,8 @@
 
 VERSION = "0.1.0"
 
+DESTDIR ?= /usr/local/share/libsigrok/firmware
+
 all:
 	@echo "Run 'make dist' to create a tarball."
 
@@ -31,4 +33,8 @@ dist: ChangeLog
 		--exclude=sigrok-firmware-$(VERSION).tar.gz \
 		-f sigrok-firmware-$(VERSION).tar.gz *
 	@rm -f ChangeLog
+
+install:
+	@mkdir -p $(DESTDIR)
+	@cp */*.fw $(DESTDIR)
 
