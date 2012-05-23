@@ -2,11 +2,31 @@
 README
 -------------------------------------------------------------------------------
 
-This repository contains a collection of logic analyzer firmware files
-required for some of the logic analyzers sigrok supports.
+This is a collection of firmware files required for some of the devices
+sigrok supports (logic analyzers, oscilloscopes, or others).
 
 We only carry firmware files for which we have an explicit permission/license
 that allows at _least_ redistribution of the firmware.
+
+
+Installation
+------------
+
+You can install the firmware files like this:
+
+  $ make install
+
+This will install them into /usr/local/share/libsigrok/firmware per default.
+
+You can override the install directory like this:
+
+  $ make DESTDIR=/tmp/foo install
+
+
+Licenses
+--------
+
+ * asix-sigma/*.fw: See asix-sigma/LICENSE.Sigma.
 
 
 Website
