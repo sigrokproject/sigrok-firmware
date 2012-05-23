@@ -22,16 +22,19 @@ VERSION = "0.1.0"
 
 DESTDIR ?= /usr/local/share/libsigrok/firmware
 
+TARBALLDIR = sigrok-firmwares-$(VERSION)
+
 all:
 	@echo "Run 'make dist' to create a tarball."
 
 ChangeLog:
-	git log > ChangeLog || touch ChangeLog
+	@git log > ChangeLog || touch ChangeLog
 
 dist: ChangeLog
-	@tar -c -v -z --exclude=.git --exclude=Makefile \
-		--exclude=sigrok-firmwares-$(VERSION).tar.gz \
-		-f sigrok-firmwares-$(VERSION).tar.gz *
+	@mkdir $(TARBALLDIR)
+	@cp -r Makefile README NEWS asix-sigma $(TARBALLDIR)
+	@tar -c -z -f $(TARBALLDIR).tar.gz $(TARBALLDIR)
+	@rm -rf $(TARBALLDIR)
 	@rm -f ChangeLog
 
 install:
