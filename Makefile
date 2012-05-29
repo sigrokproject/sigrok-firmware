@@ -22,7 +22,7 @@ VERSION = "0.1.0"
 
 DESTDIR ?= /usr/local/share/sigrok-firmware
 
-TARBALLDIR = sigrok-firmwares-$(VERSION)
+TARBALLDIR = sigrok-firmware-$(VERSION)
 
 all:
 	@echo "Valid Makefile targets: ChangeLog, dist, install."
