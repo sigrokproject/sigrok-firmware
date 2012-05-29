@@ -16,7 +16,7 @@ You can install the firmware files like this:
 
   $ make install
 
-This will install them into /usr/local/share/libsigrok/firmware per default.
+This will install them into /usr/local/share/sigrok-firmware per default.
 
 You can override the install directory like this:
 

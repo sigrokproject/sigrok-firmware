@@ -20,7 +20,7 @@
 
 VERSION = "0.1.0"
 
-DESTDIR ?= /usr/local/share/libsigrok/firmware
+DESTDIR ?= /usr/local/share/sigrok-firmware
 
 TARBALLDIR = sigrok-firmwares-$(VERSION)
 
