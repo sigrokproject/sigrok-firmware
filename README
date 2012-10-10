@@ -2,25 +2,48 @@
 README
 -------------------------------------------------------------------------------
 
-This is a collection of firmware files required for some of the devices
-sigrok supports (logic analyzers, oscilloscopes, or others).
+The sigrok project aims at creating a portable, cross-platform,
+Free/Libre/Open-Source signal analysis software suite that supports various
+device types (such as logic analyzers, oscilloscopes, multimeters, and more).
+
+sigrok-firmware is a collection of firmware files required for some of the
+devices libsigrok supports (logic analyzers, oscilloscopes, or others).
 
 We only carry firmware files for which we have an explicit permission/license
 that allows at _least_ redistribution of the firmware.
 
 
-Installation
-------------
+Status
+------
 
-You can install the firmware files like this:
+sigrok-firmware is in a usable state and has had official tarball releases.
+
+
+Building and installing
+-----------------------
+
+In order to get the sigrok-firmware source code and build it, run:
+
+ $ git clone git://sigrok.org/sigrok-firmware
+ $ cd sigrok-firmware
+ $ make
+
+For installing sigrok-firmware:
 
   $ make install
 
-This will install them into /usr/local/share/sigrok-firmware per default.
+This will install the files into /usr/local/share/sigrok-firmware per default.
 
 You can override the install directory like this:
 
   $ make DESTDIR=/tmp/foo install
+
+Please see the following wiki pages for more detailed instructions:
+
+ http://sigrok.org/wiki/Linux
+ http://sigrok.org/wiki/Mac_OS_X
+ http://sigrok.org/wiki/Windows
+ http://sigrok.org/wiki/FreeBSD
 
 
 Licenses
@@ -29,8 +52,23 @@ Licenses
  * asix-sigma/*.fw: See asix-sigma/LICENSE.Sigma.
 
 
+Mailing lists
+-------------
+
+There are two mailing lists for sigrok/sigrok-firmware:
+
+ https://lists.sourceforge.net/lists/listinfo/sigrok-devel
+ https://lists.sourceforge.net/lists/listinfo/sigrok-commits
+
+
+IRC
+---
+
+You can find the sigrok developers in the #sigrok IRC channel on Freenode.
+
+
 Website
 -------
 
-http://sigrok.org
+ http://sigrok.org/wiki/Firmware
 
