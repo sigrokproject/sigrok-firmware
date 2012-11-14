@@ -26,6 +26,8 @@ In order to get the sigrok-firmware source code and build it, run:
 
  $ git clone git://sigrok.org/sigrok-firmware
  $ cd sigrok-firmware
+ $ ./autogen.sh
+ $ ./configure
  $ make
 
 For installing sigrok-firmware:
@@ -36,7 +38,7 @@ This will install the files into /usr/local/share/sigrok-firmware per default.
 
 You can override the install directory like this:
 
-  $ make DESTDIR=/tmp/foo install
+  $ ./configure --prefix=/usr
 
 Please see the following wiki pages for more detailed instructions:
 

@@ -18,26 +18,15 @@
 ## Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 ##
 
-VERSION = "0.1.0"
+ACLOCAL_AMFLAGS = -I autostuff
 
-DESTDIR ?= /usr/local/share/sigrok-firmware
+SUBDIRS = asix-sigma
 
-TARBALLDIR = sigrok-firmware-$(VERSION)
+MAINTAINERCLEANFILES = ChangeLog
 
-all:
-	@echo "Valid Makefile targets: ChangeLog, dist, install."
-
+.PHONY: ChangeLog
 ChangeLog:
-	@git log > ChangeLog || touch ChangeLog
+	git --git-dir $(top_srcdir)/.git log > ChangeLog || touch ChangeLog
 
-dist: ChangeLog
-	@mkdir $(TARBALLDIR)
-	@cp -r Makefile README NEWS asix-sigma $(TARBALLDIR)
-	@tar -c -z -f $(TARBALLDIR).tar.gz $(TARBALLDIR)
-	@rm -rf $(TARBALLDIR)
-	@rm -f ChangeLog
-
-install:
-	@mkdir -p $(DESTDIR)
-	@cp */*.fw $(DESTDIR)
+dist-hook: ChangeLog
 
