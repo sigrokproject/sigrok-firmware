@@ -1,7 +1,6 @@
 ##
 ## This file is part of the sigrok project.
 ##
-## Copyright (C) 2012 Uwe Hermann <uwe@hermann-uwe.de>
 ## Copyright (C) 2012 Bert Vermeulen <bert@biot.com>
 ##
 ## This program is free software; you can redistribute it and/or modify
@@ -19,15 +18,7 @@
 ## Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 ##
 
-ACLOCAL_AMFLAGS = -I autostuff
+dist_pkgdata_DATA = nexus-osciprime.fw
 
-SUBDIRS = asix-sigma nexus-osciprime
-
-MAINTAINERCLEANFILES = ChangeLog
-
-.PHONY: ChangeLog
-ChangeLog:
-	git --git-dir $(top_srcdir)/.git log > ChangeLog || touch ChangeLog
-
-dist-hook: ChangeLog
+EXTRA_DIST = COPYING
 

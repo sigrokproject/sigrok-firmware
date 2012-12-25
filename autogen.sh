@@ -3,6 +3,7 @@
 ## This file is part of the sigrok project.
 ##
 ## Copyright (C) 2012 Uwe Hermann <uwe@hermann-uwe.de>
+## Copyright (C) 2012 Bert Vermeulen <bert@biot.com>
 ##
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -49,7 +50,7 @@ elif [ "x$OS" = "xMINGW32_NT-6.1" ]; then
 fi
 
 echo "Generating build system..."
-mkdir autostuff
+mkdir -p autostuff
 aclocal ${ACLOCAL_DIR} || exit 1
 autoheader || exit 1
 automake --add-missing --copy --foreign || exit 1

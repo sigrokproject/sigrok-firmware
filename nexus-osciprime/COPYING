@@ -1,0 +1,6 @@
+The firmware in this directory is intended for use on a Cypress FX2LP on
+a Nexus Computing OsciPrime oscilloscope. The source code is available under
+the terms of the GPLv2. For further information, see:
+
+	http://www.osciprime.com/
+
