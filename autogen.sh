@@ -1,6 +1,6 @@
 #!/bin/sh
 ##
-## This file is part of the sigrok project.
+## This file is part of the sigrok-firmware project.
 ##
 ## Copyright (C) 2012 Uwe Hermann <uwe@hermann-uwe.de>
 ## Copyright (C) 2012 Bert Vermeulen <bert@biot.com>
