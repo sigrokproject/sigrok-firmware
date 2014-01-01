@@ -39,7 +39,6 @@ AC_SUBST(MAKEFLAGS, '--no-print-directory')
 
 AC_CONFIG_FILES([Makefile
 		 asix-sigma/Makefile
-		 nexus-osciprime/Makefile
 		])
 
 AC_OUTPUT

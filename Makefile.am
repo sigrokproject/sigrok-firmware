@@ -21,7 +21,7 @@
 
 ACLOCAL_AMFLAGS = -I autostuff
 
-SUBDIRS = asix-sigma nexus-osciprime
+SUBDIRS = asix-sigma
 
 MAINTAINERCLEANFILES = ChangeLog
 
