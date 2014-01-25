@@ -39,6 +39,7 @@ AC_SUBST(MAKEFLAGS, '--no-print-directory')
 
 AC_CONFIG_FILES([Makefile
 		 asix-sigma/Makefile
+		 sysclk-lwla/Makefile
 		])
 
 AC_OUTPUT
