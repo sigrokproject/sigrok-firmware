@@ -57,13 +57,10 @@ Copyright and license info for these firmware files is available here:
  * sysclk-lwla/*.rbf: See sysclk-lwla/LICENSE.LWLA.
 
 
-Mailing lists
--------------
-
-There are two mailing lists for sigrok/sigrok-firmware:
+Mailing list
+------------
 
  https://lists.sourceforge.net/lists/listinfo/sigrok-devel
- https://lists.sourceforge.net/lists/listinfo/sigrok-commits
 
 
 IRC
