@@ -23,24 +23,16 @@ AC_PREREQ([2.63])
 
 AC_INIT([sigrok-firmware], [0.1.0], [sigrok-devel@lists.sourceforge.net],
 	[sigrok-firmware], [http://www.sigrok.org])
-AC_CONFIG_HEADER([config.h])
-AC_CONFIG_MACRO_DIR([autostuff])
 AC_CONFIG_AUX_DIR([autostuff])
 
 # We require at least automake 1.11 (needed for 'silent rules').
-AM_INIT_AUTOMAKE([1.11 -Wall -Werror check-news])
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+AM_INIT_AUTOMAKE([1.11 -Wall -Werror no-define nostdinc check-news])
+AM_SILENT_RULES([yes])
 
 AC_PROG_INSTALL
-AC_PROG_LN_S
-
-AC_SUBST(FIRMWARE_DIR, "$datadir/sigrok-firmware")
-AC_SUBST(MAKEFLAGS, '--no-print-directory')
 
 AC_CONFIG_FILES([Makefile
 		 asix-sigma/Makefile
 		 sysclk-lwla/Makefile
 		])
-
 AC_OUTPUT
-
