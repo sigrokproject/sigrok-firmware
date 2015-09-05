@@ -31,8 +31,5 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_INSTALL
 
-AC_CONFIG_FILES([Makefile
-		 asix-sigma/Makefile
-		 sysclk-lwla/Makefile
-		])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

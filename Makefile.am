@@ -21,7 +21,19 @@
 
 GNUMAKEFLAGS = --no-print-directory
 
-SUBDIRS = asix-sigma sysclk-lwla
+dist_pkgdata_DATA = \
+	asix-sigma/asix-sigma-100.fw \
+	asix-sigma/asix-sigma-200.fw \
+	asix-sigma/asix-sigma-50.fw \
+	asix-sigma/asix-sigma-50sync.fw \
+	sysclk-lwla/sysclk-lwla1034-extneg.rbf \
+	sysclk-lwla/sysclk-lwla1034-extpos.rbf \
+	sysclk-lwla/sysclk-lwla1034-int.rbf \
+	sysclk-lwla/sysclk-lwla1034-off.rbf
+
+dist_noinst_DATA = \
+	asix-sigma/LICENSE.Sigma \
+	sysclk-lwla/LICENSE.LWLA
 
 MAINTAINERCLEANFILES = ChangeLog
 
