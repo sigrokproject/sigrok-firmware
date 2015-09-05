@@ -1,17 +1,20 @@
 # autotools cruft
-aclocal.m4
-autom4te.cache/
-config.h
-config.h.in
-config.log
-config.status
-configure
-stamp-h1
-autostuff/
-ChangeLog
-INSTALL
+/INSTALL
+/Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/autostuff/
+/configure
+/configure.lineno
 
-# recursive autoconf leftovers
-Makefile
-Makefile.in
+# Editor/IDE cruft
+*.kate-swp
+*~
+/*.kdev4
+/Makefile.am.user
 
+# Configure/build cruft
+/ChangeLog
+/Makefile
+/config.*
+/sigrok-firmware-*.tar.*
