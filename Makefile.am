@@ -26,6 +26,8 @@ dist_pkgdata_DATA = \
 	asix-sigma/asix-sigma-200.fw \
 	asix-sigma/asix-sigma-50.fw \
 	asix-sigma/asix-sigma-50sync.fw \
+	sysclk-lwla/sysclk-lwla1016-100.rbf \
+	sysclk-lwla/sysclk-lwla1016-100-ts.rbf \
 	sysclk-lwla/sysclk-lwla1034-extneg.rbf \
 	sysclk-lwla/sysclk-lwla1034-extpos.rbf \
 	sysclk-lwla/sysclk-lwla1034-int.rbf \
