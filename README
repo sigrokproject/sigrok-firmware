@@ -13,6 +13,18 @@ We only carry firmware files for which we have an explicit permission/license
 that allows at _least_ redistribution of the firmware.
 
 
+Copyright and license
+---------------------
+
+The 'sigrok-firmware' project/repo/tarball has no license per se, since
+it's just a collection of firmware files from various sources.
+
+Copyright and license info for these firmware files is available here:
+
+ * asix-sigma/*.fw: See asix-sigma/LICENSE.Sigma.
+ * sysclk-lwla/*.rbf: See sysclk-lwla/LICENSE.LWLA.
+
+
 Status
 ------
 
@@ -43,18 +55,6 @@ You can override the install directory like this:
 See INSTALL or the following wiki page for more (OS-specific) instructions:
 
  http://sigrok.org/wiki/Building
-
-
-Copyright and license
----------------------
-
-The 'sigrok-firmware' project/repo/tarball has no license per se, since
-it's just a collection of firmware files from various sources.
-
-Copyright and license info for these firmware files is available here:
-
- * asix-sigma/*.fw: See asix-sigma/LICENSE.Sigma.
- * sysclk-lwla/*.rbf: See sysclk-lwla/LICENSE.LWLA.
 
 
 Mailing list
