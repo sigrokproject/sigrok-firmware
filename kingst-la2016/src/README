@@ -1,0 +1,110 @@
+-------------------------------------------------------------------------------
+README
+-------------------------------------------------------------------------------
+
+The sigrok project aims at creating a portable, cross-platform,
+Free/Libre/Open-Source signal analysis software suite that supports various
+device types (such as logic analyzers, oscilloscopes, multimeters, and more).
+
+This is a Free/Libre/Open-source firmware for the cypress fx2 mcu
+used in the Kingst la2016 and la1016 logic analyzers. This firmware
+is used along with the libsigrok driver 'kingst-la2016'.
+
+
+Status
+------
+
+Tested with PulseView on the Kingst la2016 and la1016.
+
+
+Requirements
+------------
+
+ - git
+ - make
+ - autoconf >= 2.63
+ - automake >= 1.11
+ - sdcc (>= 3.4.0)
+
+
+Building and installing
+-----------------------
+
+In order to get the source code and build it, run:
+
+ $ git clone git://sigrok.org/sigrok-firmware
+ $ cd sigrok-firmware/kingst-la2016/src
+ $ ./autogen.sh
+ $ ./configure
+ $ make
+
+For installing:
+
+ $ make install
+
+The generated *.fw file is installed into /usr/local/share/sigrok-firmware
+
+You can override the install location like this:
+
+ $ ./configure --prefix=/usr
+
+See INSTALL or the following wiki page for more (OS-specific) instructions:
+
+ http://sigrok.org/wiki/Building
+
+
+Pre-built firmware file
+-----------------------
+
+There is also a pre-built firmware file that can be used without having
+to build from source. It is available in the sigrok-firmware repository.
+
+
+fx2lib
+------
+
+The fx2lafw code uses a (slightly modified) "fx2lib" helper library.
+
+It was imported into fx2lafw from
+
+  git://github.com/ubixum/fx2lib.git
+
+as of Feb 12, 2012 (git hash "416c104cbd").
+
+The following files/directories were removed, as they're not needed
+for our purposes: CHANGELOG, COPYING*, docs/, examples/, fw/, and utils/.
+
+
+Copyright and license
+---------------------
+
+This firmware is licensed under the terms of the GNU General Public
+License (GPL), version 2 or later.
+
+It uses additional helper code (fx2lib firmware), licensed under the
+GNU LGPL (version 2.1 or later).
+
+While some individual source code files are licensed under the LGPLv2.1+, and
+some files are licensed under the GPLv2+, this doesn't change the fact that
+the firmware as a whole is licensed under the terms of the GPLv2+.
+
+Please see the individual source files for the full list of copyright holders.
+
+
+Mailing list
+------------
+
+ https://lists.sourceforge.net/lists/listinfo/sigrok-devel
+
+
+IRC
+---
+
+You can find the sigrok developers in the #sigrok IRC channel on Libera.Chat.
+
+
+Website
+-------
+
+ https://sigrok.org/wiki/Kingst_LA2016
+
