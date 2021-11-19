@@ -39,7 +39,7 @@ static void gpif_reset_waveforms(void)
 	int i;
 
 	/* Reset GPIF waveform data. */
-	AUTOPTRSETUP = 0x03; /* Enable and auto increment AUTOPTR1 */
+	AUTOPTRSETUP = 0x03;	/* Enable and auto increment AUTOPTR1 */
 	AUTOPTRH1 = 0xe4;
 	AUTOPTRL1 = 0x00;
 	for (i = 0; i < 128; i++)
@@ -52,10 +52,10 @@ static void gpif_setup_registers(void)
 
 	GPIFREADYCFG = 0x80;
 	/*
-	Internal RDY=1 default high like others but not used
-	SAS=0 (RDY inputs sync'd to IFCLK)
-	TCXRDY5=0=RDY5 (not Transaction Count Expire)
-	*/
+	 * Internal RDY=1 default high like others but not used
+	 * SAS=0 (RDY inputs sync'd to IFCLK)
+	 * TCXRDY5=0=RDY5 (not Transaction Count Expire)
+	 */
 
 	/* Set TRICTL = 0, thus CTL0-CTL5 are CMOS outputs, never tri-state */
 	GPIFCTLCFG = 0;
@@ -73,8 +73,9 @@ static void gpif_setup_registers(void)
 	 *
 	 * GPIFWFSELECT: [7:6] = SINGLEWR index, [5:4] = SINGLERD index,
 	 *               [3:2] = FIFOWR index, [1:0] = FIFORD index
-	 */                
-	GPIFWFSELECT = (0x3u << 6) | (0x2u << 4) | (0x1u << 2) | (0x0u << 0);
+	 */
+	GPIFWFSELECT =
+	    (0x3u << 6) | (0x2u << 4) | (0x1u << 2) | (0x0u << 0);
 }
 
 static void gpif_init_flowstates(void)
@@ -90,7 +91,8 @@ static void gpif_init_flowstates(void)
 	FLOWSTBHPERIOD = 0;
 }
 
-static void gpif_make_delay_state(volatile BYTE *pSTATE, uint8_t delay, uint8_t output)
+static void gpif_make_delay_state(volatile BYTE * pSTATE, uint8_t delay,
+				  uint8_t output)
 {
 	/*
 	 * DELAY
@@ -118,7 +120,8 @@ static void gpif_make_delay_state(volatile BYTE *pSTATE, uint8_t delay, uint8_t 
 }
 
 
-static void gpif_make_data_dp_state_S2(volatile BYTE *pSTATE, uint8_t output)
+static void gpif_make_data_dp_state_S2(volatile BYTE * pSTATE,
+				       uint8_t output)
 {
 	/*
 	 * BRANCH
@@ -150,7 +153,8 @@ static void gpif_make_data_dp_state_S2(volatile BYTE *pSTATE, uint8_t output)
 }
 
 
-static void gpif_make_goto_state(volatile BYTE *pSTATE, uint8_t next_state, uint8_t output)
+static void gpif_make_goto_state(volatile BYTE * pSTATE,
+				 uint8_t next_state, uint8_t output)
 {
 	/* CTL=output, store FD[15:0], then goto next_state */
 
@@ -202,13 +206,13 @@ void gpif_make_waveform0(void)
 	 * We are not using transaction count here, the FPGA will signal when transfer is complete by
 	 * lowering RDY1. The main loop detects this and writes 0xff to GPIFABORT.
 	 */
-	gpif_make_delay_state(pSTATE++, 1,	bmCTL2 | bmCTL1 /*| bmCTL0 */);	/* State S0 */
-	gpif_make_delay_state(pSTATE++, 1,	bmCTL2 | bmCTL1 /*| bmCTL0 */);	/* State S1 */
-	gpif_make_data_dp_state_S2(pSTATE++,	bmCTL2 | bmCTL1 /*| bmCTL0 */);	/* State S2 */
-	gpif_make_goto_state(pSTATE++, 2,	bmCTL2 /*| bmCTL1 | bmCTL0 */);	/* State S3: read FD then goto S2 */
-	gpif_make_delay_state(pSTATE++, 1, 	bmCTL2 | bmCTL1 | bmCTL0);	/* State S4 not used */
-	gpif_make_delay_state(pSTATE++, 1, 	bmCTL2 | bmCTL1 | bmCTL0);	/* State S5 not used */
-	gpif_make_delay_state(pSTATE++, 1, 	bmCTL2 | bmCTL1 | bmCTL0);	/* State S6 not used */
+	gpif_make_delay_state(pSTATE++, 1, bmCTL2 | bmCTL1);	/* State S0 */
+	gpif_make_delay_state(pSTATE++, 1, bmCTL2 | bmCTL1);	/* State S1 */
+	gpif_make_data_dp_state_S2(pSTATE++, bmCTL2 | bmCTL1);	/* State S2 */
+	gpif_make_goto_state(pSTATE++,  2, bmCTL2);	/* State S3: read FD then goto S2 */
+	gpif_make_delay_state(pSTATE++, 1, bmCTL2 | bmCTL1 | bmCTL0);	/* State S4 not used */
+	gpif_make_delay_state(pSTATE++, 1, bmCTL2 | bmCTL1 | bmCTL0);	/* State S5 not used */
+	gpif_make_delay_state(pSTATE++, 1, bmCTL2 | bmCTL1 | bmCTL0);	/* State S6 not used */
 	/* State 7 is idle state, never reach it. */
 }
 
@@ -221,16 +225,16 @@ void gpif_init_la(void)
 	 */
 	IFCONFIG = 0xea;
 	/*
-	 * IFCLKSRC	1   FIFOs execute on internal clk source
-	 * 48MHZ		1   48MHz internal clk rate
-	 * IFCLKOE		1   Drive IFCLK pin signal at 48MHz
-	 * IFCLKPOL	0   Don't invert IFCLK pin signal from internal clk
-	 * ASYNC		1   master samples asynchronous
+	 * IFCLKSRC     1   FIFOs execute on internal clk source
+	 * 48MHZ                1   48MHz internal clk rate
+	 * IFCLKOE              1   Drive IFCLK pin signal at 48MHz
+	 * IFCLKPOL     0   Don't invert IFCLK pin signal from internal clk
+	 * ASYNC                1   master samples asynchronous
 	 *  When ASYNC=1, the FIFO/GPIF operate asynchronously: no clock signal input to IFCLK is
 	 *  required; the FIFO control signals function directly as read and write strobes.
-	 * GSTATE		0   PE0,1,2 NOT used for diagnostics
-	 * IFCFG1		1   IFCFG[1:0]=10, FX2 in GPIF master mode
-	 * IFCFG0		0
+	 * GSTATE               0   PE0,1,2 NOT used for diagnostics
+	 * IFCFG1               1   IFCFG[1:0]=10, FX2 in GPIF master mode
+	 * IFCFG0               0
 	 */
 
 	/* Abort currently executing GPIF waveform (if any). */
