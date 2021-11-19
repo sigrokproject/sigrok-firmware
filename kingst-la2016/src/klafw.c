@@ -542,7 +542,7 @@ void ep2_fifo_poll(void)
 
 		if (n == 0) {
 			/* Got a zero length packet, signifies end of bitstream */
-			configuring_fpga == FALSE;
+			configuring_fpga = FALSE;
 		} else {
 			/* pass bitstream through to the fpga configuration port */
 			AUTOPTRSETUP = 0x03;	/* Enable and auto increment AUTOPTR1 */
