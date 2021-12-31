@@ -107,7 +107,7 @@ static void setup_endpoints(void)
 	EP6AUTOINLENL = 0x00;
 	SYNCDELAY();
 	/* EP6: Set the GPIF flag to 'fifo full'. */
-	EP6GPIFFLGSEL = (1 << 1) | (0 << 1);
+	EP6GPIFFLGSEL = (1u << 1) | (0u << 1);
 	SYNCDELAY();
 }
 
@@ -158,8 +158,7 @@ static BOOL handle_eeprom(void)
 		while (len) {
 			BYTE cur_read = len > 64 ? 64 : len;
 			while (EP0CS & bmEPBUSY);
-			if (!eeprom_read
-			    (EEPROM_I2C_ADDR, eeaddr, cur_read, EP0BUF)) {
+			if (!eeprom_read(EEPROM_I2C_ADDR, eeaddr, cur_read, EP0BUF)) {
 				return FALSE;
 			}
 			EP0BCH = 0;
@@ -179,9 +178,7 @@ static BOOL handle_eeprom(void)
 		while (EP0CS & bmEPBUSY);	/* wait for buffer to fill */
 		cur_write = EP0BCL;
 		EEPROM_WP = 0;
-		ret =
-		    eeprom_write(EEPROM_I2C_ADDR, eeaddr, cur_write,
-				 EP0BUF);
+		ret = eeprom_write(EEPROM_I2C_ADDR, eeaddr, cur_write, EP0BUF);
 		EEPROM_WP = 1;
 		if (!ret) {
 			return FALSE;

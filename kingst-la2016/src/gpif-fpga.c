@@ -62,7 +62,7 @@ static void gpif_setup_registers(void)
 
 	/* When GPIF is idle, tri-state the data bus. */
 	/* Bit 7: DONE, bit 0: IDLEDRV. */
-	GPIFIDLECS = (0 << 0);
+	GPIFIDLECS = (0u << 0);
 
 	/* When GPIF is idle, set CTL0-CTL2 to 1, others zero. */
 	GPIFIDLECTL = 0x07;
@@ -129,13 +129,13 @@ static void gpif_make_data_dp_state_S2(volatile BYTE * pSTATE,
 	 * Branch to S2 if condition is true, else next state S3.
 	 * if(FIFO_FULL | RDY0) { goto state 0b010 } else { goto state 0b011 }
 	 */
-	pSTATE[0] = (0 << 7) | (2 << 3) | (3 << 0);
+	pSTATE[0] = (0u << 7) | (2u << 3) | (3u << 0);
 
 	/*
 	 * OPCODE
 	 * SGL=0, GIN=0, INCAD=0, NEXT=0, DATA=0 (no store), DP=1
 	 */
-	pSTATE[8] = (0 << 1) | (1 << 0);
+	pSTATE[8] = (0u << 1) | (1u << 0);
 
 	/*
 	 * OUTPUT
@@ -149,7 +149,7 @@ static void gpif_make_data_dp_state_S2(volatile BYTE * pSTATE,
 	 * Evaluate if the FIFO full flag is set OR if FD[15:0] not ready.
 	 * LFUNC=1 (OR), TERMA=6 (FIFO Flag), TERMB=0 (RDY0)
 	 */
-	pSTATE[24] = (1 << 6) | (6 << 3) | (0 << 0);
+	pSTATE[24] = (1u << 6) | (6u << 3) | (0u << 0);
 }
 
 
@@ -164,13 +164,13 @@ static void gpif_make_goto_state(volatile BYTE * pSTATE,
 	 * Always branch to next_state
 	 * if(INTRDY) { goto next_state } else { goto next_state }
 	 */
-	pSTATE[0] = (0 << 7) | (next_state << 3) | (next_state << 0);
+	pSTATE[0] = (0u << 7) | (next_state << 3) | (next_state << 0);
 
 	/*
 	 * OPCODE
 	 * SGL=0, GIN=0, INCAD=0, NEXT=0, DATA=1 (store), DP=1
 	 */
-	pSTATE[8] = (1 << 1) | (1 << 0);
+	pSTATE[8] = (1u << 1) | (1u << 0);
 
 	/*
 	 * OUTPUT
@@ -183,7 +183,7 @@ static void gpif_make_goto_state(volatile BYTE * pSTATE,
 	 * Evaluated on the rising edge of IFCLK, i.e. at the beginning of the state time.
 	 * LFUNC=1 (OR), TERMA=6 (INTRDY), TERMB=6 (INTRDY)
 	 */
-	pSTATE[24] = (1 << 6) | (7 << 3) | (7 << 0);
+	pSTATE[24] = (1u << 6) | (7u << 3) | (7u << 0);
 }
 
 
@@ -194,11 +194,11 @@ void gpif_make_waveform0(void)
 	/* Ensure GPIF is idle before reconfiguration. */
 	while (!(GPIFTRIG & bmGPIFDONE));
 
-	/* Inputs: RDY0 = low when data available from fpga (probably fpga fifo empty flag)
+	/* Inputs: RDY0 = low when data available (fpga export fifo empty flag)
 	 *         RDY1 = low when fpga has finished sending all capture data
-	 * Outputs CTL0 = low to enable fpga data outputs
-	 *         CTL1 = falling edge CTL1 clocks data out of FPGA
-	 *                and FD[15:0] are sampled by FX2 when CTL1 is low.
+	 * Outputs CTL0 = low to enable fpga data output (tri-state buffers)
+	 *         CTL1 = FD[15:0] are sampled by FX2 when CTL1 is low, then
+	 *                rising edge clocks next data out of FPGA export fifo.
 	 * 
 	 * note: TRICTL = 0, thus CTL0-CTL5 are CMOS outputs, never tri-state
 	 *
@@ -225,16 +225,16 @@ void gpif_init_la(void)
 	 */
 	IFCONFIG = 0xea;
 	/*
-	 * IFCLKSRC     1   FIFOs execute on internal clk source
-	 * 48MHZ                1   48MHz internal clk rate
-	 * IFCLKOE              1   Drive IFCLK pin signal at 48MHz
-	 * IFCLKPOL     0   Don't invert IFCLK pin signal from internal clk
-	 * ASYNC                1   master samples asynchronous
+	 * IFCLKSRC	1 FIFOs execute on internal clk source
+	 * 48MHZ	1 48MHz internal clk rate
+	 * IFCLKOE	1 Drive IFCLK pin signal at 48MHz
+	 * IFCLKPOL	0 Don't invert IFCLK pin signal from internal clk
+	 * ASYNC	1 master samples asynchronous
 	 *  When ASYNC=1, the FIFO/GPIF operate asynchronously: no clock signal input to IFCLK is
 	 *  required; the FIFO control signals function directly as read and write strobes.
-	 * GSTATE               0   PE0,1,2 NOT used for diagnostics
-	 * IFCFG1               1   IFCFG[1:0]=10, FX2 in GPIF master mode
-	 * IFCFG0               0
+	 * GSTATE	0 PE0,1,2 NOT used for diagnostics
+	 * IFCFG1	1 IFCFG[1:0]=10, FX2 in GPIF master mode
+	 * IFCFG0	0
 	 */
 
 	/* Abort currently executing GPIF waveform (if any). */
