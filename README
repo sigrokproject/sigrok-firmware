@@ -22,6 +22,7 @@ it's just a collection of firmware files from various sources.
 Copyright and license info for these firmware files is available here:
 
  * asix-sigma/*.fw: See asix-sigma/LICENSE.Sigma.
+ * kingst-la2016/*.fw: See kingst-la2016/src/README.
  * sysclk-lwla/*.rbf: See sysclk-lwla/LICENSE.LWLA.
 
 
